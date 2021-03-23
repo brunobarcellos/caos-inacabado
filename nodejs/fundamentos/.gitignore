@@ -1,0 +1,7 @@
+# Arquivos do Node Js que são gerados a partir do package.json
+package-lock.json
+node_modules/
+
+# Arquivos temporários do Mac
+.trash/
+.DS_Store
