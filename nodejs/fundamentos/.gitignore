@@ -5,3 +5,6 @@ node_modules/
 # Arquivos temporários do Mac
 .trash/
 .DS_Store
+
+# Testando exclusão de arquivos Marko compilados
+*.marko.js
