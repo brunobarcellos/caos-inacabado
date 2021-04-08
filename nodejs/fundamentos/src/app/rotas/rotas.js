@@ -30,5 +30,21 @@ module.exports = (app) => {
                 ))
                 .catch(erro => console.log(erro));
     });
+    
+    app.get('/livros/novo', function(req, resp) {
+
+        resp.marko(require('../views/livros/cadastro'))
+
+    });
+
+    app.post('/livros', function(req, resp) {
+        console.log(req.body);
+
+        const livroDao = new LivroDao(db);
+
+        livroDao.adiciona(req.body)
+                .then(resp.redirect('/livros'))
+                .catch(erro => console.log(erro));
+    });
 };
 

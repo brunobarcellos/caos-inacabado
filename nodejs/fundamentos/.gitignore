@@ -8,3 +8,6 @@ node_modules/
 
 # Testando exclusão de arquivos Marko compilados
 *.marko.js
+
+# Testando exclusão de arquivo .db
+*.db
