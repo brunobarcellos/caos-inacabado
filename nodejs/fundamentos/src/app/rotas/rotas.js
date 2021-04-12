@@ -23,7 +23,7 @@ module.exports = (app) => {
 
         livroDao.lista()
                 .then(livros => resp.marko(
-                    require('../views/livros/lista.marko'),
+                    require('../views/livros/lista'),
                     {
                         livros: livros
                     }
@@ -33,8 +33,26 @@ module.exports = (app) => {
     
     app.get('/livros/novo', function(req, resp) {
 
-        resp.marko(require('../views/livros/cadastro'))
+        resp.marko(
+            require('../views/livros/cadastro'), 
+            { livro: {} }    
+        )
 
+    });
+
+    app.get('/livros/editar/:id', function(req, resp) {
+        const id = req.params.id;
+        const livroDao = new LivroDao(db);
+    
+        livroDao.buscaPorId(id)
+            .then(livro => 
+                resp.marko(
+                    require('../views/livros/cadastro'),
+                    { livro: livro }
+                )
+            )
+            .catch(erro => console.log(erro));
+    
     });
 
     app.post('/livros', function(req, resp) {
