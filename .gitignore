@@ -11,3 +11,7 @@ node_modules/
 
 # Testando exclusão de arquivo .db
 *.db
+
+# Excluindo nomes e extensões utilizadas em testes de escrita de arquivos
+*.txt
+notes.json
