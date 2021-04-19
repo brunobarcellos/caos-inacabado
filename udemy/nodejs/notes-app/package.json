@@ -1,0 +1,29 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "Estudos do curso The Complete Node.js Developer Course 3rd Edition",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunobarcellos/exercicios-alura.git"
+  },
+  "keywords": [
+    "estudo",
+    "nodejs"
+  ],
+  "author": "Bruno Barcellos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brunobarcellos/exercicios-alura/issues"
+  },
+  "homepage": "https://github.com/brunobarcellos/exercicios-alura#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "validator": "^13.5.2",
+    "yargs": "^16.2.0"
+  }
+}
