@@ -15,3 +15,13 @@ node_modules/
 # Excluindo nomes e extensões utilizadas em testes de escrita de arquivos
 *.txt
 notes.json
+
+# Excluindo diretório de arquivos gerado pelo Rust / Cargo
+target/
+Cargo.lock
+
+# Excluindo diretório de configuração do pyCharm
+.idea/
+
+# Excluindo diretório de configuração do Vs Code
+.vscode/
