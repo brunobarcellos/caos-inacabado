@@ -1,23 +1,20 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-const get = function () {
-    return 'Your notes...';
-};
+const get = () => 'Your notes...';
 
-const add = function (title, body) {
+const add = (title, body) => {
     const notes = load();
-    const duplicated = notes.filter(function (note) {
-        return note.title === title;
-    });
 
-    if (duplicated.length === 0) {
+    const duplicated = notes.find((note) => note.title === title);
+
+    if (!duplicated) {
 
         notes.push({
             title: title,
             body: body
         });
-    
+
         save(notes);
 
         console.log(chalk.green.inverse('New note added!'));
@@ -27,12 +24,12 @@ const add = function (title, body) {
     }
 };
 
-const save = function (notes) {
+const save = (notes) => {
     const dataJSON = JSON.stringify(notes);
     fs.writeFileSync('notes.json', dataJSON);
 }
 
-const load = function () {
+const load = () => {
     try{
         const dataBuffer = fs.readFileSync('notes.json');
         const dataJSON = dataBuffer.toString();
@@ -42,12 +39,10 @@ const load = function () {
     }
 };
 
-const remove = function (title) {
+const remove = (title) => {
     const notes = load();
 
-    const notesToKeep = notes.filter(function (note) {
-        return note.title !== title;
-    });
+    const notesToKeep = notes.filter((note) => note.title !== title);
 
     if (notes.length > notesToKeep.length) {
         console.log(chalk.green.inverse('Note removed!')); 
@@ -58,9 +53,32 @@ const remove = function (title) {
     save(notesToKeep);
 };
 
+const list = () => {
+    const notes = load();
+
+    console.log(chalk.inverse('Your notes!'));
+
+    notes.forEach((note) => console.log(note.title));
+};
+
+const read = (title) => {
+    const notes = load();
+    
+    const note = notes.find((note) => note.title === title);
+
+    if (note) {
+        console.log(chalk.inverse(note.title));
+        console.log(note.body);
+    } else {
+        console.log(chalk.red.inverse('Note not found!'));
+    }
+};
+
 // Exportando múltiplas funções como um objeto JSON
 module.exports = {
     get: get,
     add: add,
-    remove: remove
+    remove: remove,
+    list: list,
+    read: read
 };

@@ -1,6 +1,7 @@
 const validator = require('validator');
 const notes = require('./notes');
 const yargs = require('yargs');
+const { argv } = require('yargs');
 
 // A aplicação passa a retorna esta versão, ao invés da especificada no package.json
 yargs.version('99.99.99');
@@ -24,7 +25,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         notes.add(argv.title, argv.body);
         console.log('Title: ' + argv.title);
         console.log('Body: ' + argv.body);
@@ -41,7 +42,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         notes.remove(argv.title);
     },
 });
@@ -49,16 +50,23 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function () {
-        console.log('Reading a note.')
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },    
+    handler(argv) {
+        notes.read(argv.title);
     },   
 });
 
 yargs.command({
     command: 'list',
     describe: 'List the notes',
-    handler: function () {
-        console.log('Listing the notes.')
+    handler() {
+        notes.list();
     },  
 });
 
